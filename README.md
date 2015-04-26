@@ -1,6 +1,6 @@
 # Test Coin Determiner
 
-### Installation (dev environment)
+### Installation
 
 Before getting started you should install the following softwares and packages:
 
