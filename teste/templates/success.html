@@ -1,87 +1,68 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="pt">
-    <head>
-        <meta charset="utf-8">
-        <title>The Coin Determiner</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{% static 'custom.css' %}">
-        <style>
-            body {
-                background-image: url({% static "coins.jpg" %})
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="brand"> The Coin Determiner </div>
-                <div class="box" id="center_box">
-                    <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
-                    <br>
 
-                    <div class="row">
+{% block content %}
+    <div class="box" id="center_box">
+        <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
+        <br>
+        <div class="row">
 
-                        {% if error_msg %}
-                            <div class="col-lg-12">
-                                <p class="bg-danger" style="padding: 10px; border-radius: 10px; padding-left: 20px;">{{error_msg}}</p>
-                            </div>
-                        {% endif %}
+            {% if error_msg %}
+                <div class="col-lg-12">
+                    <p class="bg-danger" style="padding: 10px; border-radius: 10px; padding-left: 20px;">{{error_msg}}</p>
+                </div>
+            {% endif %}
 
-                        {% if done %}
-                            <div class="col-lg-8">
-                                <div class="panel panel-success">
-                                    <div class="panel-heading">Coins Determined</div>
-                                    <div class="panel-body">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th><b>Number</b></th>
-                                                    <th><b>Number of Coins</b></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for num in done %}
-                                                    <tr>
-                                                        <td>{{num.number}}</td>
-                                                        <td>{{num.num_coins}}</td>
-                                                    </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
+            {% if done %}
+                <div class="col-lg-8">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">Coins Determined</div>
+                        <div class="panel-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th><b>Number</b></th>
+                                        <th><b>Number of Coins</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for num in done %}
+                                        <tr>
+                                            <td>{{num.number}}</td>
+                                            <td>{{num.num_coins}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
 
-                        {% if error %}
-                            <div class="col-lg-4">
-                                <div class="panel panel-danger">
-                                    <div class="panel-heading">Out of range</div>
-                                    <div class="panel-body">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th><b>Number</b></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            {% for num in error %}
-                                                <tr>
-                                                    <td>{{num}}</td>
-                                                </tr>
-                                            {% endfor %}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
+            {% if error %}
+                <div class="col-lg-4">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">Out of range</div>
+                        <div class="panel-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th><b>Number</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for num in error %}
+                                    <tr>
+                                        <td>{{num}}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
 
-                    </div> <!--/row-->
-                </div> <!--/box-->
-            </div><!--/row-->
-        </div><!--/container-->
-    </body>
-</html>
+        </div> <!--/row-->
+    </div> <!--/box-->
+{% endblock %}

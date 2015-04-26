@@ -3,17 +3,19 @@ from .forms import UploadFileForm
 from .models import CoinsAvailableModel, CoinsDeterminedModel
 
 """ Return a dictionary
-Receive the text file, transform into array of interger. Search if number was 
-calculated. If not will calculate and save in database.
+Receive the text file, transform into array of integer and remove numbers 
+duplicated. Search if number was calculated. If not will calculate and save 
+in database.
 """
 def handle_uploaded_file(document):
     list_error = []     #Numbers out of range(1,250)
     list_done = []      #Objects of the model CoinsDeterminedModel
     error_msg = ""      #Error messages.
     if document.content_type == 'text/plain':
-        numbers = document.read().split('\n')
+        numbers = document.read().split()
         try:
             numbers = [int(number) for number in numbers]
+            numbers = set(numbers)
             for number in numbers:
                 if 1 <= number <= 250:
                     try:
@@ -36,7 +38,7 @@ def handle_uploaded_file(document):
                 number = "Empty line"
             error_msg = "Please check your file. Error found: " + number
     else:
-        error_msg = "Fail! Text file required."
+        error_msg = "Failure! Text file required."
     dict_final = {
                     "done": list_done, "error": list_error, 
                     "error_msg": error_msg
@@ -44,11 +46,11 @@ def handle_uploaded_file(document):
     return dict_final
 
 """Return a interger
-Calculate all the possibilities and return the least number of coins, that when 
+Calculate all the possibilities and return the least number of coins, that when
 added, equal the input integer.
 """
 def coin_determiner(number):
-    coins = CoinsAvailableModel.objects.order_by('coin')
+    coins = CoinsAvailableModel.objects.all()
     coins = [coin.coin for coin in coins]
     list_num_coins = []
     for coin in coins:
