@@ -3,8 +3,13 @@
 
 {% block content %}
     <div class="box" id="center_box">
-        <p>{{description.description}}</p>
+        <p>
+            {{description.description}}
+            <a href="{% static 'numbers.txt' %}"> numbers.txt </a>
+        </p>
+
         <br>
+
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form }}
