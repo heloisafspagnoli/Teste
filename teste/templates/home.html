@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>The Coin Determiner</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'custom.css' %}">
+        <style>
+            body {
+                background-image: url({% static "coins.jpg" %})
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="brand"> The Coin Determiner </div>
+                <div class="box" id="center_box">
+                    <p>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</p>
+                    <br>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form }}
+                        <div id="btn_send">
+                            <input type="submit" value="Send" class="btn btn-default" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
